@@ -3,7 +3,7 @@
 		"prefix": "headerguard",
 		"body": [
 			"#ifndef ${1:${TM_FILENAME_BASE}_H}",
-			"#define ${1:${TM_FILENAME_BASE}_H}",
+			"# define ${1:${TM_FILENAME_BASE}_H}",
 			"",
 			"${0}",
 			"",
@@ -53,8 +53,8 @@
 	"Declare Accessor and Mutator": {
 		"prefix": "getset_dec",
 		"body": [
-			"${2:type} ${3:ClassName}::get${1:name}() const;",
-			"void ${3:ClassName}::set${1:name}(${2:type}& value);",
+			"${2:type}	${3:ClassName}::get${1:name}() const;",
+			"void	${3:ClassName}::set${1:name}(${2:type}& value);",
 		],
 		"description": "Declare accessor (getter) and mutator (setter) functions for a class member"
 	},
@@ -62,10 +62,10 @@
 	"Define Accessor and Mutator": {
 		"prefix": "getset_def",
 		"body": [
-			"${2:type} ${3:ClassName}::get${1:name}() const {",
+			"${2:type}	${3:ClassName}::get${1:name}() const {",
 			"	return ${1:name};",
 			"}",
-			"void ${3:ClassName}::set${1:name}(${2:type}& value) {",
+			"void	${3:ClassName}::set${1:name}(${2:type}& value) {",
 			"	${1:name} = value;",
 			"}"
 		],
@@ -78,12 +78,12 @@
 		"prefix": "getset",
 		"body": [
 			"// Getter for ${1:member}",
-			"${2:type} get${1/(\\w)(\\w*)/\\u$1$2/}() const {",
+			"${2:type}	get${1/(\\w)(\\w*)/\\u$1$2/}() const {",
 			"	return ${1};",
 			"}",
 			"",
 			"// Setter for ${1:member}",
-			"void set${1/(\\w)(\\w*)/\\u$1$2/}(const ${2:type}& value) {",
+			"void	set${1/(\\w)(\\w*)/\\u$1$2/}(const ${2:type}& value) {",
 			"	${1} = value;",
 			"}"
 		],
