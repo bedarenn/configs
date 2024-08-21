@@ -88,5 +88,28 @@
 			"}"
 		],
 		"description": "Define accessor (getter) functions for a class member"
+	},
+
+	"Declare exception": {
+		"prefix": "except_dec",
+		"body": [
+			"class	${1:ClassName}::${2:name} : public std::exception {",
+			"public:",
+			"	static const char	*msg;",
+			"	const char			*what() const throw();",
+			"};",
+		],
+		"description": "Declare exception"
+	},
+
+	"Define exception": {
+		"prefix": "except_def",
+		"body": [
+			"const char	*${1:ClassName}::${2:name}::msg = ${3:msg};"
+			"const char	*Form::GradeTooHighException::what() const throw() {"
+			"	return (msg);"
+			"}"
+		],
+		"description": "Define exception"
 	}
 }
