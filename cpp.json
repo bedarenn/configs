@@ -17,14 +17,13 @@
 		"body": [
 			"class ${1:ClassName} {",
 			"public:",
-			"	${1:ClassName}();",
 			"	~${1:ClassName}();",
 			"	${1:ClassName}(const ${1:ClassName}& other);",
 			"",
 			"	${1:ClassName}&	operator=(const ${1:ClassName}& other);",
 			"",
 			"private:",
-			"	// Private members go here",
+			"	${1:ClassName}();",
 			"};",
 		],
 		"description": "Declare a class canonical form"
@@ -38,13 +37,14 @@
 			"${1:ClassName}::${1:ClassName}() {}",
 			"${1:ClassName}::~${1:ClassName}() {}",
 			"${1:ClassName}::${1:ClassName}(const ${1:ClassName}& other) {",
-			"	*this = other;"
-			"}"
+			"	*this = other;",
+			"}",
 			"",
 			"${1:ClassName}&	${1:ClassName}::operator=(const ${1:ClassName}& other) {",
-			"	*this = other;"
-			"	return (*this);"
-			"}"
+			"	if (this == &other)",
+			"		return (*this);",
+			"	return (*this);",
+			"}",
 			"",
 		],
 		"description": "Define a class canonical form"
@@ -53,8 +53,8 @@
 	"Declare Accessor and Mutator": {
 		"prefix": "getset_dec",
 		"body": [
-			"${2:type}	get${1:name}() const;",
-			"void	set${1:name}(${2:type}& value);",
+			"const ${2:type}&	get${1:name}() const;",
+			"void	set${1:name}(const ${2:type}& value);",
 		],
 		"description": "Declare accessor (getter) and mutator (setter) functions for a class member"
 	},
@@ -62,10 +62,10 @@
 	"Define Accessor and Mutator": {
 		"prefix": "getset_def",
 		"body": [
-			"${2:type}	${3:ClassName}::get${1:name}() const {",
+			"const ${2:type}&	${3:ClassName}::get${1:name}() const {",
 			"	return (${1:name});",
 			"}",
-			"void	${3:ClassName}::set${1:name}(${2:type}& value) {",
+			"void	${3:ClassName}::set${1:name}(const ${2:type}& value) {",
 			"	${1:name} = value;",
 			"}"
 		],
